@@ -1,0 +1,70 @@
+name: Typst package CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "package/**"
+      - "projet-typst/**"
+      - ".github/workflows/typst-package.yml"
+  pull_request:
+    paths:
+      - "package/**"
+      - "projet-typst/**"
+      - ".github/workflows/typst-package.yml"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Compile package + projet exemple
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Typst
+        uses: typst-community/setup-typst@v4
+        with:
+          typst-version: latest
+
+      - name: Lire nom + version du package
+        id: pkg
+        run: |
+          name=$(awk -F' *= *' '/^name *=/ {gsub(/"/,"",$2); print $2; exit}' package/typst.toml)
+          version=$(awk -F' *= *' '/^version *=/ {gsub(/"/,"",$2); print $2; exit}' package/typst.toml)
+          echo "name=$name"       >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Package: $name @ $version"
+
+      - name: Smoke test (import relatif depuis lib.typ)
+        run: typst compile --root package package/tests/smoke.typ /tmp/smoke.pdf
+
+      - name: Installer le package en @local pour le projet exemple
+        run: |
+          dest="$HOME/.local/share/typst/packages/local/${{ steps.pkg.outputs.name }}/${{ steps.pkg.outputs.version }}"
+          mkdir -p "$dest"
+          cp -r package/* "$dest/"
+          ls -la "$dest"
+
+      - name: Réécrire l'import @preview -> @local pour la CI
+        run: |
+          sed -i 's|@preview/${{ steps.pkg.outputs.name }}:|@local/${{ steps.pkg.outputs.name }}:|' projet-typst/main.typ
+          head -1 projet-typst/main.typ
+          grep -n "${{ steps.pkg.outputs.name }}" projet-typst/main.typ
+
+      - name: Compiler le projet exemple
+        run: |
+          typst compile \
+            --font-path projet-typst/fonts \
+            projet-typst/main.typ \
+            /tmp/exemple.pdf
+
+      - name: Uploader les PDFs (debug)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: typst-pdfs
+          path: |
+            /tmp/smoke.pdf
+            /tmp/exemple.pdf
+          if-no-files-found: warn
+          retention-days: 7

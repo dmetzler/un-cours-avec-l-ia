@@ -1,0 +1,70 @@
+site_name: "Atelier — Créer ses cours avec l'IA"
+site_description: "Atelier de 2 h : fabriquer un support de cours illustré avec l'IA, de la trace écrite au PDF imprimable."
+site_author: "Damien Metzler"
+# Pour un déploiement sur dmetzler.github.io/atelier-svt-ia, décommentez :
+# site_url: "https://dmetzler.github.io/atelier-svt-ia/"
+
+theme:
+  name: material
+  language: fr
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Passer en mode sombre
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Passer en mode clair
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.footer
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
+  icon:
+    admonition:
+      note: material/lightbulb-outline
+      tip: material/cursor-default-click-outline
+      warning: material/alert-outline
+      success: material/check-circle-outline
+
+nav:
+  - "Accueil": index.md
+  - "L'IA en 10 minutes": 01-ia.md
+  - "Étape 1 — La trace écrite": 02-trace-ecrite.md
+  - "Étape 2 — Schémas & couverture": 03-images.md
+  - "Étape 3 — Assembler dans Typst": 04-typst.md
+  - "Le kit & aller plus loin": 05-kit.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.keys
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra:
+  social:
+    - icon: material/web
+      link: https://dmetzler.github.io
