@@ -43,7 +43,8 @@ nav:
   - "Étape 1 — La trace écrite": 02-trace-ecrite.md
   - "Étape 2 — Schémas & couverture": 03-images.md
   - "Étape 3 — Assembler dans Typst": 04-typst.md
-  - "Le kit & aller plus loin": 05-kit.md
+  - "Étape 4 — Partager avec NotebookLM": 05-notebooklm.md
+  - "Le kit & aller plus loin": 06-kit.md
 
 markdown_extensions:
   - admonition

@@ -62,6 +62,28 @@ Le premier jet est rarement parfait. On **dialogue** avec l'IA. Quelques relance
     le programme de 3ᵉ ? Si oui, signale-la. »** L'IA fait souvent elle-même le
     ménage.
 
+## Et avec un autre outil que Gemini ?
+
+Le **Chromebook fourni** propose Gemini, c'est ce qu'on utilise pendant l'atelier.
+Mais à la maison, sur votre propre cours, vous pouvez en choisir un autre selon
+le besoin. Aucun n'est universellement meilleur — ce sont des outils
+**complémentaires**.
+
+| Outil | Là où il excelle | Quand le préférer |
+|-------|------------------|-------------------|
+| **Gemini** ([gemini.google.com](https://gemini.google.com)) | Tout-terrain, lit images & PDF, intégré au Workspace | C'est l'outil par défaut sur Chromebook, parfait pour démarrer. |
+| **Perplexity** ([perplexity.ai](https://perplexity.ai)) | **Cherche sur le web** et **cite ses sources** | Pour s'appuyer sur le **programme officiel** d'Éduscol, un BO, ou un document de référence en ligne. Vous voyez d'où vient l'information. |
+| **Claude** ([claude.ai](https://claude.ai)) | **Rédaction longue** et **problèmes pédagogiques complexes** | Pour une séquence entière, une progression annuelle, un cas pédagogique délicat (différenciation, élève à besoins particuliers, choix de progression). |
+
+!!! tip "Un workflow qui marche très bien"
+    1. *Perplexity* pour récupérer **ce que dit le programme officiel** sur votre
+       chapitre (avec liens vers Éduscol).
+    2. *Claude* ou *Gemini* pour **rédiger la trace écrite** à partir de cette
+       base validée.
+
+    Ce séquencement « **sourcer puis rédiger** » sépare les deux moments où l'IA
+    peut se tromper, et vous gardez la main sur chacun.
+
 ## ✅ Avant de passer à la suite
 
 Vous devez avoir, sous les yeux, un **texte de chapitre que vous trouvez juste et

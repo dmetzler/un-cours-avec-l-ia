@@ -26,8 +26,9 @@ vôtre.
 | **L'IA en 10 minutes** | Juste ce qu'il faut comprendre pour bien s'en servir | 10 min |
 | **Étape 1 — La trace écrite** | Faire rédiger le chapitre manquant par l'IA | 30 min |
 | **Étape 2 — Schémas & couverture** | Générer le schéma d'expérience et une couverture | 20 min |
-| **Étape 3 — Assembler dans Typst** | Tout réunir et exporter un PDF | 40 min |
-| **Partage & kit** | On regarde vos productions, et vous repartez équipés | 15 min |
+| **Étape 3 — Assembler dans Typst** | Tout réunir et exporter un PDF | 35 min |
+| **Étape 4 — Partager avec NotebookLM** | Donner le cours aux élèves comme tuteur de révision | 15 min |
+| **Partage & kit** | On regarde vos productions, et vous repartez équipés | 10 min |
 
 ## La règle d'or
 
