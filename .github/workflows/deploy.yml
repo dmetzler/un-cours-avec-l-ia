@@ -14,16 +14,67 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+env:
+  PKG_NAME: modele-cours-st-jacques
+  PKG_VERSION: "0.1.0"
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - run: mkdocs build --strict
+
+      - name: Install Typst
+        uses: typst-community/setup-typst@v4
+        with:
+          typst-version: latest
+
+      - name: Installer le package en @local
+        run: |
+          dest="$HOME/.local/share/typst/packages/local/$PKG_NAME/$PKG_VERSION"
+          mkdir -p "$dest"
+          cp -r package/typst.toml package/lib.typ package/README.md package/LICENSE "$dest/"
+
+      - name: Compiler les sources du kit (kit-sources/*.typ -> docs/kit/*.pdf)
+        run: |
+          mkdir -p docs/kit
+          shopt -s nullglob
+          for src in kit-sources/*.typ; do
+            base=$(basename "$src" .typ)
+            build="kit-sources/.build-$base.typ"
+            sed "s|@preview/$PKG_NAME:|@local/$PKG_NAME:|" "$src" > "$build"
+            typst compile \
+              --font-path projet-typst/fonts \
+              "$build" "docs/kit/$base.pdf"
+            rm -f "$build"
+            echo "✓ docs/kit/$base.pdf ($(du -h "docs/kit/$base.pdf" | cut -f1))"
+          done
+
+      - name: Compiler l'exemple (projet-typst/main.typ -> docs/kit/exemple_ions.pdf)
+        run: |
+          build_dir=$(mktemp -d)
+          cp -r projet-typst "$build_dir/projet-typst"
+          sed -i "s|@preview/$PKG_NAME:|@local/$PKG_NAME:|" "$build_dir/projet-typst/main.typ"
+          typst compile \
+            --font-path "$build_dir/projet-typst/fonts" \
+            "$build_dir/projet-typst/main.typ" \
+            docs/kit/exemple_ions.pdf
+          echo "✓ docs/kit/exemple_ions.pdf ($(du -h docs/kit/exemple_ions.pdf | cut -f1))"
+
+      - name: Zipper le projet pour les participants (projet-typst/ -> docs/kit/projet-typst.zip)
+        run: |
+          rm -f docs/kit/projet-typst.zip
+          zip -rq docs/kit/projet-typst.zip projet-typst -x '*.DS_Store'
+          unzip -l docs/kit/projet-typst.zip
+
+      - name: Construire le site MkDocs
+        run: mkdocs build --strict
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

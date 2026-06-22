@@ -5,7 +5,11 @@
 # Prépare une release du package Typst vers typst/packages.
 #
 # Usage :
-#   scripts/release-typst-package.sh [--fork OWNER]
+#   scripts/release-typst-package.sh [--fork OWNER/REPO]
+#
+# --fork peut être :
+#   - OWNER/REPO           (ex. dmetzler/typst-packages — fork renommé)
+#   - OWNER                (assume OWNER/packages — fork avec nom par défaut)
 #
 # Étapes :
 #   1. Lit nom + version dans package/typst.toml
@@ -28,16 +32,28 @@ HERE="$(cd "$(dirname "$0")/.." && pwd)"
 PACKAGE_DIR="$HERE/package"
 WORK_DIR="$HERE/.release-work"
 UPSTREAM="https://github.com/typst/packages.git"
+FORK_SPEC=""
 FORK_OWNER=""
+FORK_REPO=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --fork)  FORK_OWNER="$2"; shift 2 ;;
+    --fork)  FORK_SPEC="$2"; shift 2 ;;
     -h|--help)
-      sed -n '2,18p' "$0"; exit 0 ;;
+      sed -n '2,24p' "$0"; exit 0 ;;
     *) echo "Argument inconnu : $1" >&2; exit 2 ;;
   esac
 done
+
+if [[ -n "$FORK_SPEC" ]]; then
+  if [[ "$FORK_SPEC" == */* ]]; then
+    FORK_OWNER="${FORK_SPEC%%/*}"
+    FORK_REPO="${FORK_SPEC##*/}"
+  else
+    FORK_OWNER="$FORK_SPEC"
+    FORK_REPO="packages"
+  fi
+fi
 
 # ─── Helpers ────────────────────────────────────────────────
 say()  { printf '\033[1;34m▶\033[0m %s\n' "$*"; }
@@ -86,7 +102,7 @@ cd packages
 
 # Configurer le fork comme remote si demandé
 if [[ -n "$FORK_OWNER" ]]; then
-  FORK_URL="git@github.com:$FORK_OWNER/packages.git"
+  FORK_URL="git@github.com:$FORK_OWNER/$FORK_REPO.git"
   if git remote get-url fork >/dev/null 2>&1; then
     git remote set-url fork "$FORK_URL"
   else
@@ -153,17 +169,23 @@ EOF
 if [[ -n "$FORK_OWNER" ]]; then
   cat <<EOF
   git push fork $BRANCH
-  gh pr create \\
-      --repo typst/packages \\
-      --head $FORK_OWNER:$BRANCH \\
-      --base main \\
-      --title "$NAME:$VERSION" \\
-      --body "New package: $NAME@$VERSION"
+
+  # Ouvre la PR (la branche pousse sur $FORK_OWNER/$FORK_REPO, la PR vise typst/packages) :
+  open "https://github.com/typst/packages/compare/main...$FORK_OWNER:$FORK_REPO:$BRANCH?expand=1"
+
+  # …ou via gh (depuis le clone du fork, pas celui-ci) :
+  #   gh repo clone $FORK_OWNER/$FORK_REPO /tmp/$FORK_REPO && cd /tmp/$FORK_REPO
+  #   git fetch origin $BRANCH && git checkout $BRANCH
+  #   gh pr create --repo typst/packages \\
+  #       --head $FORK_OWNER:$BRANCH \\
+  #       --base main \\
+  #       --title "$NAME:$VERSION" \\
+  #       --body "New package: $NAME@$VERSION"
 EOF
 else
   cat <<EOF
   # ajoute ton fork comme remote 'fork' puis pousse :
-  git remote add fork git@github.com:<TON_USER>/packages.git
+  git remote add fork git@github.com:<TON_USER>/<TON_REPO>.git
   git push fork $BRANCH
   # ouvre une PR vers typst/packages depuis ton fork
 EOF
