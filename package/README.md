@@ -10,7 +10,7 @@ Fournit :
   et ligne de métadonnées,
 - une **page de sommaire** stylée,
 - des **encarts colorés** prêts à l'emploi (`#def`, `#key`, `#warn`, `#ex`,
-  `#analogy`, `#keyhint`, `#atelier`),
+  `#analogy`, `#keyhint`, `#atelier`, `#theorem`),
 - un **bloc de question** pour auto-test (`#qcm-q`) avec case à cocher
   dessinée (pas de glyphe Unicode → zéro avertissement de substitution
   de police sur [typst.app](https://typst.app)),
@@ -88,6 +88,7 @@ Paramètres :
 - `#analogy[…]` — Analogie (rose, italique)
 - `#keyhint[…]` — Clé de compréhension (violet)
 - `#atelier[…]` — À construire en atelier (turquoise)
+- `#theorem[…]` — Théorème (slate / ardoise — pour les maths)
 
 ### Auto-test
 

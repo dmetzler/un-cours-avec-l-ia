@@ -24,6 +24,7 @@ Un peu de texte avec une #strong[mise en valeur].
 #analogy[Analogie.]
 #keyhint[Clé de compréhension.]
 #atelier[Zone d'atelier.]
+#theorem[Énoncé de théorème de test.]
 
 #qcm-q(1, [Question test ?], options: ("A", "B", "C"), lines: 2)
 

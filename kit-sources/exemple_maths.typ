@@ -55,7 +55,7 @@
   [Triangle rectangle en $A$ : l'hypoténuse $[B C]$ est opposée à l'angle droit.],
 )
 
-#key[
+#theorem[
   Dans un triangle rectangle, le carré de l'hypoténuse est égal à la somme des
   carrés des deux autres côtés :
   $ B C^2 = A B^2 + A C^2 $
@@ -85,7 +85,7 @@ Le théorème permet de calculer une longueur quand on *sait* que le triangle es
 rectangle. La *réciproque* fait l'inverse : elle permet de *démontrer* qu'un
 triangle est rectangle.
 
-#key[
+#theorem[
   Si, dans un triangle, le carré du plus grand côté est égal à la somme des
   carrés des deux autres côtés, alors ce triangle est *rectangle*, et son plus
   grand côté est l'hypoténuse.
