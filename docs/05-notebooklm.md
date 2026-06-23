@@ -24,6 +24,21 @@ partir d'internet.
     il s'appuie sur le PDF que vous avez chargé — pas sur ce qui se
     dit ailleurs sur le web.
 
+## Voir un exemple live
+
+Pour vous faire une idée concrète, voici le notebook construit à partir
+de la **séquence d'exemple de cet atelier** (Acides, bases et ions —
+3ᵉ). Cliquez, posez-lui une question, écoutez la vue d'ensemble audio.
+
+[:material-open-in-new: Ouvrir l'exemple NotebookLM](https://notebooklm.google.com/notebook/376dae3d-4319-4919-b589-7ed4e508212f){ .md-button .md-button--primary target="_blank" }
+
+!!! tip "Questions à essayer"
+    - *« Quelle est la différence entre une solution acide et une solution basique ? »*
+    - *« Explique-moi pourquoi le métal disparaît dans l'acide chlorhydrique. »*
+    - *« Donne-moi 5 questions de QCM sur ce cours, avec les bonnes réponses à la fin. »*
+    - *« Génère un audio overview »* (en bas de l'interface) — vous aurez
+      un podcast de 5-10 min entre deux voix qui discutent du cours.
+
 ## En pratique
 
 ### 1. Créer un notebook
