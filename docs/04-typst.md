@@ -12,7 +12,9 @@ déjà fait dans le modèle — vous n'avez qu'à **remplir**.
 
 1. Allez sur **[typst.app](https://typst.app)** et créez un compte gratuit
    (connexion avec Google possible).
-2. Téléchargez le **[kit projet](kit/projet-typst.zip)**, décompressez-le.
+2. Téléchargez le **[kit projet](kit/projet-typst.zip)**, décompressez-le
+   (la [source du `main.typ`](06-kit.md#source-exemple-ions) est également
+   consultable inline si vous voulez voir le code avant de télécharger).
 3. Sur typst.app : **+ Empty project**, puis glissez-déposez **tout le contenu**
    du dossier (`main.typ`, le dossier `fonts`, et les images).
 
@@ -42,7 +44,8 @@ le texte que Gemini a rédigé pour vous.
     | `#key[…]` | un encart « À retenir » |
     | `#warn[…]` | un encart rouge « Attention » |
 
-    L'**[aide-mémoire imprimable](kit/aide-memoire.pdf)** récapitule tout.
+    L'**[aide-mémoire imprimable](kit/aide-memoire.pdf)** récapitule tout
+    ([source](06-kit.md#source-aide-memoire)).
 
 ## 3. Brancher vos images
 
@@ -83,4 +86,5 @@ Bouton de téléchargement en haut à droite → votre PDF est prêt. 🎉
 
 !!! note "Pour aller plus loin"
     Le **[tutoriel complet](kit/tutoriel.pdf)** détaille tout, pas à pas. À garder
-    sous le coude pour vos prochains cours.
+    sous le coude pour vos prochains cours
+    ([source](06-kit.md#source-tutoriel) consultable inline).

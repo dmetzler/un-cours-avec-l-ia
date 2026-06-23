@@ -14,6 +14,7 @@ le construire.
 ## Le résultat visé
 
 [:material-file-pdf-box: Voir la séquence d'exemple (PDF)](kit/exemple_ions.pdf){ .md-button .md-button--primary }
+[:material-file-code-outline: Voir la source](06-kit.md#source-exemple-ions){ .md-button }
 
 Regardez le chapitre **« Réaction des acides avec les métaux »** : il est en creux.
 À la fin de l'atelier, le vôtre sera rempli, illustré, et la couverture sera la

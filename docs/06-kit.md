@@ -12,26 +12,36 @@ cours.
     Le modèle, l'exemple, les polices et les images de départ.
 
     [:material-download: projet-typst.zip](kit/projet-typst.zip)
+    · [:material-file-code-outline: source](#source-projet-typst)
 
 -   :material-book-open-variant: **Le tutoriel complet**
 
     Le guide pas-à-pas pour Typst, sans connaissance technique.
 
     [:material-download: tutoriel.pdf](kit/tutoriel.pdf)
+    · [:material-file-code-outline: source](#source-tutoriel)
 
 -   :material-card-text-outline: **L'aide-mémoire**
 
     Une page à imprimer avec toute la syntaxe utile.
 
     [:material-download: aide-memoire.pdf](kit/aide-memoire.pdf)
+    · [:material-file-code-outline: source](#source-aide-memoire)
 
 -   :material-file-pdf-box: **La séquence d'exemple**
 
     Le résultat complet sur les acides, bases et ions.
 
     [:material-download: exemple_ions.pdf](kit/exemple_ions.pdf)
+    · [:material-file-code-outline: source](#source-exemple-ions)
 
 </div>
+
+!!! tip "Pourquoi le lien « source » ?"
+    Le PDF, c'est ce que voient vos élèves. La **source `.typ`**, c'est ce
+    qui permet de **refaire et adapter** : copiez-la dans votre projet
+    [typst.app](https://typst.app), changez le texte, les images, les
+    couleurs. C'est plus rapide que de repartir d'une page blanche.
 
 ## Refaire chez vous, avec votre cours
 
@@ -64,6 +74,7 @@ vectorielles exactes**, comme la bibliothèque
 cercles, courbes, schémas géométriques.
 
 [:material-file-pdf-box: Exemple : le théorème de Pythagore (PDF)](kit/exemple_maths.pdf){ .md-button }
+[:material-file-code-outline: Source `.typ`](#source-exemple-maths){ .md-button }
 
 Cet exemple, rédigé pour une classe de 3ᵉ, montre comment combiner :
 
@@ -74,9 +85,75 @@ Cet exemple, rédigé pour une classe de 3ᵉ, montre comment combiner :
 - les encarts du modèle (`#def`, `#key`, `#warn`, `#ex`, `#keyhint`)
   pour structurer la démonstration.
 
-La source de l'exemple est dans le repo :
-[`kit-sources/exemple_maths.typ`](https://github.com/dmetzler/un-cours-avec-l-ia/blob/main/kit-sources/exemple_maths.typ)
-— vous pouvez la copier dans votre projet typst.app et l'adapter.
+## Sources des exemples
+
+Toutes les sources `.typ` utilisées pour fabriquer les PDFs ci-dessus
+sont **inclues ici, telles quelles**. Dépliez celle qui vous
+intéresse, sélectionnez-la, copiez-la, et collez-la dans votre projet
+[typst.app](https://typst.app).
+
+Le code commence toujours par la ligne d'import :
+
+```typ
+#import "@preview/modele-cours-st-jacques:0.1.0": *
+```
+
+Le **modèle** est téléchargé automatiquement depuis Typst Universe au
+premier compile — vous n'avez aucun fichier de template à embarquer.
+
+### Source : aide-mémoire { #source-aide-memoire }
+
+Fait 2 pages, à imprimer pour les premiers ateliers Typst.
+
+??? note "Voir la source `kit-sources/aide-memoire.typ`"
+
+    ```typ
+    --8<-- "kit-sources/aide-memoire.typ"
+    ```
+
+### Source : exemple ions { #source-exemple-ions }
+
+Le résultat complet de l'atelier (séquence physique-chimie 3ᵉ sur les
+acides, bases et ions). C'est le `main.typ` du **kit projet** —
+nécessite aussi les deux images (`cover_ions.png`,
+`experience_acide_metal.png`) et le dossier `fonts/`, qui sont dans
+le `.zip`.
+
+??? note "Voir la source `projet-typst/main.typ`"
+
+    ```typ
+    --8<-- "projet-typst/main.typ"
+    ```
+
+### Source : projet Typst (kit complet) { #source-projet-typst }
+
+Le kit ZIP contient `main.typ` (la source ci-dessus), les **images de
+départ** et le dossier `fonts/` (polices DejaVu). C'est le format prêt
+à téléverser sur typst.app.
+
+[:material-download: Télécharger projet-typst.zip](kit/projet-typst.zip){ .md-button }
+
+### Source : exemple maths (Pythagore) { #source-exemple-maths }
+
+Exemple « aller plus loin » avec équations et figures vectorielles
+CETZ. Nécessite l'image de couverture `pythagore.png`.
+
+??? note "Voir la source `kit-sources/exemple_maths.typ`"
+
+    ```typ
+    --8<-- "kit-sources/exemple_maths.typ"
+    ```
+
+### Source : tutoriel { #source-tutoriel }
+
+Le tutoriel lui-même est écrit en Typst avec le même modèle.
+Source longue — c'est aussi un bon exemple de document structuré.
+
+??? note "Voir la source `kit-sources/tutoriel.typ` (longue, ~860 lignes)"
+
+    ```typ
+    --8<-- "kit-sources/tutoriel.typ"
+    ```
 
 ## Pour creuser Typst
 
