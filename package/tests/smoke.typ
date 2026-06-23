@@ -27,6 +27,11 @@ Un peu de texte avec une #strong[mise en valeur].
 
 #qcm-q(1, [Question test ?], options: ("A", "B", "C"), lines: 2)
 
+#fig(
+  rect(width: 60pt, height: 30pt, fill: c-blue-light, stroke: 0.5pt),
+  [Figure inline test],
+)
+
 #table(
   columns: 2,
   head[Colonne A][Colonne B],

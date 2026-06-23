@@ -75,6 +75,20 @@
   ]
 }
 
+// ─── FIGURE INLINE AVEC LÉGENDE ─────────────────────────────
+// Variante compacte de `schema` : reste dans le flot du texte
+// (pas de saut de page), insécable (ne se coupe pas entre deux
+// pages). Pour les figures vectorielles (CETZ), petits schémas
+// géométriques, illustrations math qui accompagnent un calcul.
+// `body` est n'importe quel contenu centrable.
+#let fig(body, caption) = block(width: 100%, breakable: false)[
+  #v(4pt)
+  #align(center)[#body]
+  #v(6pt)
+  #align(center)[#text(size: 9pt, fill: c-gray, style: "italic")[#caption]]
+  #v(6pt)
+]
+
 
 // ─── En-tête de tableau coloré ──────────────────────────────
 #let head(..cells) = table.header(

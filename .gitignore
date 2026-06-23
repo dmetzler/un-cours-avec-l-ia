@@ -3,9 +3,10 @@
 site/
 
 # Artefacts construits par .github/workflows/deploy.yml depuis :
-#   - kit-sources/*.typ  -> docs/kit/aide-memoire.pdf, docs/kit/tutoriel.pdf
+#   - kit-sources/*.typ  -> docs/kit/aide-memoire.pdf, docs/kit/tutoriel.pdf, docs/kit/exemple_maths.pdf
 #   - projet-typst/      -> docs/kit/exemple_ions.pdf, docs/kit/projet-typst.zip
 docs/kit/aide-memoire.pdf
 docs/kit/tutoriel.pdf
+docs/kit/exemple_maths.pdf
 docs/kit/exemple_ions.pdf
 docs/kit/projet-typst.zip

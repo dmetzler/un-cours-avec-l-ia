@@ -55,6 +55,29 @@ La même logique « cadrer → générer → valider » sert à bien d'autres ch
 - créer un **QCM d'auto-évaluation** corrigé ;
 - reformuler une consigne, traduire, résumer.
 
+## Aller plus loin : maths, équations, figures géométriques
+
+Typst gère nativement la **notation mathématique** (équations, racines,
+indices, exposants…) et s'enrichit d'extensions pour les **figures
+vectorielles exactes**, comme la bibliothèque
+[CETZ](https://cetz-package.github.io/) — pratique pour les triangles,
+cercles, courbes, schémas géométriques.
+
+[:material-file-pdf-box: Exemple : le théorème de Pythagore (PDF)](kit/exemple_maths.pdf){ .md-button }
+
+Cet exemple, rédigé pour une classe de 3ᵉ, montre comment combiner :
+
+- des **équations** alignées (calcul d'hypoténuse, vérification de la réciproque) ;
+- des **figures vectorielles** dessinées en CETZ (triangle annoté,
+  échelle contre un mur) — toujours nettes à l'impression, modifiables
+  à la main, sans logiciel de dessin séparé ;
+- les encarts du modèle (`#def`, `#key`, `#warn`, `#ex`, `#keyhint`)
+  pour structurer la démonstration.
+
+La source de l'exemple est dans le repo :
+[`kit-sources/exemple_maths.typ`](https://github.com/dmetzler/un-cours-avec-l-ia/blob/main/kit-sources/exemple_maths.typ)
+— vous pouvez la copier dans votre projet typst.app et l'adapter.
+
 ## Pour creuser Typst
 
 - Le **tutoriel officiel** : [typst.app/docs/tutorial](https://typst.app/docs/tutorial)
