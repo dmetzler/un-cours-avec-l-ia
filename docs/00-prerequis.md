@@ -2,7 +2,7 @@
 
 !!! success "À faire dans les 2 minutes"
     1. **Vous connecter** au Chromebook avec votre compte d'atelier (ci-dessous).
-    2. **Ouvrir Chrome** et taper l'adresse : **[bit.ly/4nnDKhK](https://bit.ly/4nnDKhK)**
+    2. **Ouvrir Chrome** et taper l'adresse : **[bit.ly/3QFKdtt](https://bit.ly/3QFKdtt)**
 
 C'est tout ce qu'il faut pour suivre l'atelier de bout en bout.
 
@@ -66,9 +66,7 @@ l'atelier sont attendues côté Google), tapez :
 
 ```
 bit.ly/4nnDKhK
-```
-
-ou cliquez : [https://bit.ly/4nnDKhK](https://bit.ly/4nnDKhK)
+bit.ly/3QFKdtt [https://bit.ly/3QFKdtt](https://bit.ly/3QFKdtt)
 
 Vous arriverez sur la page d'accueil de l'atelier — celle que vous
 suivrez pas à pas pendant les deux heures.
