@@ -51,9 +51,26 @@ jobs:
           shopt -s nullglob
           for src in kit-sources/*.typ; do
             base=$(basename "$src" .typ)
+            build="kit-sources/.build-$base.typ"
+            # Réécrit UNIQUEMENT l'import file-level (le premier #import qui
+            # commence en début de ligne) — les `#import @preview/...` à
+            # l'intérieur des blocs de code restent intacts pour que les
+            # PDFs montrent la forme cible @preview que les profs vont copier.
+            # Une fois le package mergé sur Typst Universe, cette étape peut
+            # être supprimée et le typst compile peut tourner directement sur
+            # le source.
+            awk -v pkg="$PKG_NAME" '
+              BEGIN { done = 0 }
+              done == 0 && $0 ~ ("^#import \"@preview/" pkg ":") {
+                sub("@preview/" pkg ":", "@local/" pkg ":")
+                done = 1
+              }
+              { print }
+            ' "$src" > "$build"
             typst compile \
               --font-path projet-typst/fonts \
-              "$src" "docs/kit/$base.pdf"
+              "$build" "docs/kit/$base.pdf"
+            rm -f "$build"
             echo "✓ docs/kit/$base.pdf ($(du -h "docs/kit/$base.pdf" | cut -f1))"
           done
 
