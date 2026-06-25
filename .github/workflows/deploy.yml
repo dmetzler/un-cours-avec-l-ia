@@ -40,6 +40,11 @@ jobs:
           mkdir -p "$dest"
           cp -r package/typst.toml package/lib.typ package/README.md package/LICENSE "$dest/"
 
+      - name: Bundler lib.typ dans projet-typst/ (forme transitoire avant publication @preview)
+        run: |
+          cp package/lib.typ projet-typst/lib.typ
+          echo "✓ projet-typst/lib.typ (copie de package/lib.typ)"
+
       - name: Compiler les sources du kit (kit-sources/*.typ -> docs/kit/*.pdf)
         run: |
           mkdir -p docs/kit
@@ -57,12 +62,9 @@ jobs:
 
       - name: Compiler l'exemple (projet-typst/main.typ -> docs/kit/exemple_ions.pdf)
         run: |
-          build_dir=$(mktemp -d)
-          cp -r projet-typst "$build_dir/projet-typst"
-          sed -i "s|@preview/$PKG_NAME:|@local/$PKG_NAME:|" "$build_dir/projet-typst/main.typ"
           typst compile \
-            --font-path "$build_dir/projet-typst/fonts" \
-            "$build_dir/projet-typst/main.typ" \
+            --font-path projet-typst/fonts \
+            projet-typst/main.typ \
             docs/kit/exemple_ions.pdf
           echo "✓ docs/kit/exemple_ions.pdf ($(du -h docs/kit/exemple_ions.pdf | cut -f1))"
 

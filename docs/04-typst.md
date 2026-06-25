@@ -16,13 +16,18 @@ déjà fait dans le modèle — vous n'avez qu'à **remplir**.
    (la [source du `main.typ`](06-kit.md#source-exemple-ions) est également
    consultable inline si vous voulez voir le code avant de télécharger).
 3. Sur typst.app : **+ Empty project**, puis glissez-déposez **tout le contenu**
-   du dossier (`main.typ`, le dossier `fonts`, et les images).
+   du dossier (`main.typ`, `lib.typ`, le dossier `fonts`, et les images).
 
-!!! note "Pas de `template.typ` à charger ?"
-    Non, et c'est volontaire. Le modèle est désormais publié sur **Typst Universe**
-    et importé par la toute première ligne de `main.typ` :
-    `#import "@preview/modele-cours-st-jacques:0.1.0": *`. typst.app le télécharge
-    tout seul la première fois.
+!!! note "À propos de `lib.typ`"
+    `lib.typ` contient le **modèle** (encarts colorés, page de couverture,
+    sommaire…) — c'est ce qu'importe la première ligne de `main.typ` :
+    `#import "lib.typ": *`. Vous n'y touchez pas, vous l'embarquez tel quel.
+
+    *À terme*, le modèle sera publié comme package sur Typst Universe et
+    `main.typ` commencera par
+    `#import "@preview/modele-cours-st-jacques:0.1.0": *` — vous n'aurez plus
+    besoin de joindre `lib.typ`. Pour l'instant on l'embarque dans le kit,
+    rien à faire de votre côté.
 
 !!! note "Pourquoi le dossier `fonts` ?"
     Il garantit que votre PDF aura **exactement** le même rendu que l'exemple,
@@ -64,13 +69,12 @@ Bouton de téléchargement en haut à droite → votre PDF est prêt. 🎉
 ## Quand ça coince : les 4 erreurs classiques
 
 ??? failure "« unknown variable: def »"
-    Il manque la première ligne
-    `#import "@preview/modele-cours-st-jacques:0.1.0": *` en haut de `main.typ`.
+    Il manque la première ligne `#import "lib.typ": *` en haut de `main.typ`.
 
-??? failure "« package not found » au premier rendu"
-    Vérifiez la ligne d'import à l'identique :
-    `#import "@preview/modele-cours-st-jacques:0.1.0": *`. typst.app télécharge
-    le modèle au premier compile, il faut juste une connexion internet.
+??? failure "« file not found: lib.typ »"
+    `lib.typ` n'a pas été téléversé avec les autres fichiers. Re-glissez le
+    contenu complet du kit (`main.typ` + `lib.typ` + dossier `fonts` + images)
+    dans le projet typst.app.
 
 ??? failure "« file not found: … .png »"
     L'image n'est pas téléversée, ou son nom ne correspond pas **à la lettre près**

@@ -10,3 +10,7 @@ docs/kit/tutoriel.pdf
 docs/kit/exemple_maths.pdf
 docs/kit/exemple_ions.pdf
 docs/kit/projet-typst.zip
+
+# Bundled depuis package/lib.typ par le workflow (forme transitoire
+# avant la publication du package sur Typst Universe).
+projet-typst/lib.typ

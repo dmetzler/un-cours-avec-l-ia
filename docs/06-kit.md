@@ -127,9 +127,10 @@ le `.zip`.
 
 ### Source : projet Typst (kit complet) { #source-projet-typst }
 
-Le kit ZIP contient `main.typ` (la source ci-dessus), les **images de
-départ** et le dossier `fonts/` (polices DejaVu). C'est le format prêt
-à téléverser sur typst.app.
+Le kit ZIP contient `main.typ` (la source ci-dessus), `lib.typ` (le
+modèle bundled — *forme transitoire* avant la publication du package
+sur Typst Universe), les **images de départ** et le dossier `fonts/`
+(polices DejaVu). C'est le format prêt à téléverser sur typst.app.
 
 [:material-download: Télécharger projet-typst.zip](kit/projet-typst.zip){ .md-button }
 
