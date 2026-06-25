@@ -51,12 +51,9 @@ jobs:
           shopt -s nullglob
           for src in kit-sources/*.typ; do
             base=$(basename "$src" .typ)
-            build="kit-sources/.build-$base.typ"
-            sed "s|@preview/$PKG_NAME:|@local/$PKG_NAME:|" "$src" > "$build"
             typst compile \
               --font-path projet-typst/fonts \
-              "$build" "docs/kit/$base.pdf"
-            rm -f "$build"
+              "$src" "docs/kit/$base.pdf"
             echo "✓ docs/kit/$base.pdf ($(du -h "docs/kit/$base.pdf" | cut -f1))"
           done
 

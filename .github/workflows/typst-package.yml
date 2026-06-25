@@ -45,11 +45,8 @@ jobs:
           cp -r package/* "$dest/"
           ls -la "$dest"
 
-      - name: Réécrire l'import @preview -> @local pour la CI
-        run: |
-          sed -i 's|@preview/${{ steps.pkg.outputs.name }}:|@local/${{ steps.pkg.outputs.name }}:|' projet-typst/main.typ
-          head -1 projet-typst/main.typ
-          grep -n "${{ steps.pkg.outputs.name }}" projet-typst/main.typ
+      - name: Bundler lib.typ dans projet-typst/ (forme transitoire)
+        run: cp package/lib.typ projet-typst/lib.typ
 
       - name: Compiler le projet exemple
         run: |

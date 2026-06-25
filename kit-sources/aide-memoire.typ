@@ -95,6 +95,14 @@ Puis on écrit le cours librement.
 #schema(image("image.png", width: 100%),
         [Légende], breakpage: false)
 
+#table(
+  columns: (auto, 1fr),
+  inset: 6pt,
+  head[Terme][Définition],
+  cat-cell[Cellule], [Unité de base du vivant.],
+  cat-cell[Tissu],   [Ensemble de cellules.],
+)
+
 #qcm-q(1, [Énoncé], options: ([A], [B], [C]))
 #qcm-q(2, [Énoncé à rédiger], lines: 3)
 ```
