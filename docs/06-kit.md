@@ -65,6 +65,43 @@ La même logique « cadrer → générer → valider » sert à bien d'autres ch
 - créer un **QCM d'auto-évaluation** corrigé ;
 - reformuler une consigne, traduire, résumer.
 
+## Adapter un cours existant en Typst
+
+Vous avez déjà un cours rédigé (manuel, polycopié, page web, document Word…)
+et vous voulez le passer dans le modèle pour en faire un PDF propre ?
+Donnez votre cours à une IA — Claude, Gemini ou Perplexity (Perplexity
+est particulièrement utile si vous voulez d'abord *sourcer* sur le
+programme officiel) — avec le prompt ci-dessous. L'IA convertit votre
+texte en code Typst en utilisant **le vocabulaire exact** du modèle, sans
+inventer de nouveaux encarts.
+
+!!! tip "Pourquoi ce prompt est volontairement minimal"
+    L'IA a tendance, dès qu'on parle de Typst, à inventer ses propres
+    `#let` (nouveaux encarts, nouvelles couleurs, ses propres
+    helpers…). Le prompt fait l'inverse : il **interdit** toute invention
+    et **liste exhaustivement** les helpers disponibles. Résultat : un
+    code qui compile du premier coup avec `coquille-st-jacques`.
+
+Le prompt à copier (collez votre cours à la fin) :
+
+```text title="prompts/conversion-typst.txt"
+--8<-- "prompts/conversion-typst.txt"
+```
+
+**Une fois la réponse récupérée** : créez un nouveau projet sur
+typst.app (via Universe : *Start from template* → *coquille-st-jacques*),
+ouvrez `main.typ`, et **remplacez le corps** (à partir du premier
+`= Chapitre`) par ce que l'IA vous a généré. Ajustez le `title`,
+l'`eyebrow` et le `cover-title` dans le préambule du modèle, et vous
+avez votre cours.
+
+!!! warning "L'IA propose, vous validez (toujours)"
+    Comme pendant l'atelier : relisez le résultat avant de l'imprimer.
+    Vérifiez surtout les **définitions** (un terme peut être mal
+    caractérisé), les **équations** (une parenthèse oubliée casse tout)
+    et les **niveaux de titre** (un chapitre rétrogradé en sous-partie
+    disparaît du sommaire).
+
 ## Aller plus loin : maths, équations, figures géométriques
 
 Typst gère nativement la **notation mathématique** (équations, racines,

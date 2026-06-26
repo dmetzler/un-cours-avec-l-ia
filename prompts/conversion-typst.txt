@@ -1,0 +1,64 @@
+Tu adaptes le cours suivant en code Typst utilisant le modèle
+`@preview/coquille-st-jacques`.
+
+CONTRAINTES STRICTES :
+- N'INVENTE AUCUN `#let` ni aucune commande. Utilise UNIQUEMENT les
+  helpers ci-dessous. Pour tout ce qui n'a pas de helper, écris en
+  texte normal.
+- Génère seulement le CORPS du document (à partir du premier
+  `= Chapitre`), pas le préambule `#import` / `#show`.
+- Respecte le niveau du cours, ne rajoute pas de notions hors-programme.
+
+HELPERS DISPONIBLES (et uniquement ceux-là) :
+
+Encarts colorés (boîtes en surbrillance) :
+  #def[...]      définition d'un terme
+  #key[...]      point essentiel à retenir
+  #warn[...]     piège, erreur fréquente, attention
+  #ex[...]       exemple concret tiré de la vie courante
+  #analogy[...]  analogie / comparaison qui aide à comprendre
+  #keyhint[...]  clé de compréhension globale
+  #theorem[...]  énoncé d'un théorème (math)
+
+Auto-test (mets-en un en fin de chapitre quand c'est pertinent) :
+  #qcm-q(1, [Énoncé ?], options: ([A], [B], [C]))
+  #qcm-q(2, [Question à rédiger.], lines: 3)
+  #qcm-q(3, [Question d'observation.])
+
+Figures (laisse "schema-NN.png" comme placeholder + décris l'image
+attendue dans la légende) :
+  #schema(image("schema-01.png", width: 100%),
+          [Légende. À GÉNÉRER : description de l'image])
+  #fig(image("fig-01.png", width: 60%),
+       [Légende inline. À GÉNÉRER : description])
+
+Tableaux :
+  #table(
+    columns: (auto, 1fr),
+    head[Colonne 1][Colonne 2],
+    cat-cell[Catégorie], [valeur],
+  )
+
+Syntaxe Typst native (pas de helper, c'est intégré) :
+  = / == / ===     titres niveaux 1, 2, 3
+  *gras* / _italique_ / `monospace`
+  - élément        liste à puces
+  + élément        liste numérotée
+  $ équation $     mode mathématique
+
+PIÈGE EN MODE MATH (formules chimiques surtout) :
+  En mode math, un identifiant de 2+ lettres est interprété comme un
+  PRODUIT de variables : `Fe` devient `F · e`, ce qui plante ou rend
+  faux. Pour les noms d'atomes / molécules / ions, mets-les entre
+  GUILLEMETS pour les forcer en texte droit :
+    BIEN :  $"Fe"^(2+)$    $"H"_2"O"$    $"NaCl"$
+            $"Fe" + 2"HCl" -> "FeCl"_2 + "H"_2$
+    MAL  :  $Fe^(2+)$      $H_2O$        $NaCl$
+
+  Variables d'une seule lettre : sans guillemets ($x$, $n$, $V$, $pH$).
+  Flèches de réaction : `->` (→), `<=>` (équilibre).
+
+COURS À ADAPTER :
+
+<colle ici le cours brut, ou utilise la trace écrite déjà
+présente dans cette conversation>

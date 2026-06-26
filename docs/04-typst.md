@@ -49,13 +49,50 @@ pré-rempli prêt à éditer.
     Il garantit que votre PDF aura **exactement** le même rendu que
     l'exemple, quel que soit l'ordinateur. Ne le supprimez pas.
 
-## 2. Coller votre trace écrite
+## 2. Convertir la trace écrite en code Typst (avec Gemini)
 
-Ouvrez `main.typ`. Trouvez le chapitre **« Réaction des acides avec les métaux »**
-et son encart turquoise **« À construire en atelier »**. **Remplacez l'encart** par
-le texte que Gemini a rédigé pour vous.
+Plutôt que de réécrire votre texte avec les balises Typst à la main,
+laissez Gemini faire le travail.
 
-!!! tip "Le balisage, en 30 secondes"
+1. **Retournez dans votre session Gemini** — celle où vous avez fait
+   rédiger la trace écrite à l'[étape 1](02-trace-ecrite.md).
+   Pas besoin d'ouvrir une nouvelle conversation : Gemini a votre
+   texte en contexte, il va le réutiliser tout seul.
+2. **Copiez le prompt ci-dessous** et envoyez-le tel quel à Gemini.
+   Il a été calibré pour qu'il génère du Typst qui *compile du premier
+   coup* avec le modèle `coquille-st-jacques` :
+
+    ```text title="prompts/conversion-typst.txt"
+    --8<-- "prompts/conversion-typst.txt"
+    ```
+
+3. Gemini vous renvoie un **bloc de code Typst** — c'est le corps de
+   votre chapitre, prêt à coller. S'il s'arrête en plein milieu, tapez
+   « continue ».
+
+!!! tip "Pourquoi un prompt aussi long ?"
+    Si on demande juste « convertis-moi en Typst », Gemini invente ses
+    propres encarts (`#info[]`, `#callout[]`, `#mybox[]`…) et le code ne
+    compile pas. Le prompt liste explicitement les helpers du modèle et
+    **interdit** d'en créer d'autres. C'est le blindage qui fait que
+    ça marche.
+
+## 3. Coller le code dans `main.typ`
+
+Dans votre projet typst.app, ouvrez `main.typ` et trouvez le chapitre
+**« Réaction des acides avec les métaux »** avec son encart turquoise
+**« À construire en atelier »**.
+
+**Remplacez tout le chapitre** (depuis le `= Réaction des acides…`
+jusqu'à la fin du `#atelier[…]`) par le code que Gemini vient de vous
+fournir.
+
+L'aperçu PDF, à droite, se met à jour tout seul. Vous voyez
+immédiatement les encarts colorés, les définitions, les exemples…
+
+!!! tip "Petit balisage à connaître quand même"
+    Au cas où vous voudriez ajuster à la main avant d'imprimer :
+
     | Vous écrivez… | Vous obtenez… |
     |---------------|---------------|
     | `= Titre` | un grand titre de chapitre (nouvelle page) |
@@ -65,24 +102,32 @@ le texte que Gemini a rédigé pour vous.
     | `#key[…]` | un encart « À retenir » |
     | `#warn[…]` | un encart rouge « Attention » |
 
-    L'**[aide-mémoire imprimable](kit/aide-memoire.pdf)** récapitule tout
-    ([source](06-kit.md#source-aide-memoire)).
+    L'**[aide-mémoire imprimable](kit/aide-memoire.pdf)** récapitule
+    tout ([source](06-kit.md#source-aide-memoire)).
 
-## 3. Brancher vos images
+## 4. Brancher vos images
 
-1. Téléversez vos deux images dans le projet (panneau de gauche).
-2. Dans `main.typ`, remplacez `cover_ions.png` par le nom de **votre**
-   couverture (dans la ligne `cover-background: image("…")`).
-3. Remplacez `experience_acide_metal.png` par le nom de **votre** schéma
-   (dans le `#schema(image("…"), …)`).
+Le code généré par Gemini contient des **placeholders** d'images
+(`schema-01.png`, etc.) avec, dans la légende, une description du
+schéma attendu.
 
-L'aperçu PDF, à droite, se met à jour tout seul.
+1. Téléversez vos deux images dans le projet typst.app (panneau de
+   gauche). Si vous n'avez pas encore fait l'[étape 2 (Schémas &
+   couverture)](03-images.md), c'est le moment.
+2. **Renommez vos images** dans typst.app pour qu'elles correspondent
+   exactement aux placeholders, **ou** modifiez les noms dans
+   `main.typ` (lignes `image("…")` dans `#schema(...)` et
+   `cover-background: image("…")`).
+3. Retirez la mention « À GÉNÉRER » dans la légende de chaque
+   `#schema` une fois l'image effectivement en place.
 
-## 4. Exporter le PDF
+L'aperçu PDF se met à jour à chaque téléversement.
+
+## 5. Exporter le PDF
 
 Bouton de téléchargement en haut à droite → votre PDF est prêt. 🎉
 
-## Quand ça coince : les 4 erreurs classiques
+## Quand ça coince : les erreurs classiques
 
 ??? failure "« unknown variable: def »"
     Il manque la première ligne
@@ -102,6 +147,22 @@ Bouton de téléchargement en haut à droite → votre PDF est prêt. 🎉
 ??? failure "Un encart ne s'affiche pas correctement"
     La bonne syntaxe est `#def[…]` : un **dièse** `#` devant, le contenu entre
     **crochets** `[ ]` (et non entre parenthèses).
+
+??? failure "Mes formules chimiques s'affichent bizarrement (`Fe = F·e`, etc.)"
+    En mode math (`$ … $`), Typst interprète un identifiant de 2+ lettres
+    comme un **produit de variables** : `$Fe^(2+)$` devient `F · e`
+    exposant `2+`. Pour les **noms d'atomes**, **ions** ou **molécules**,
+    mettez-les entre guillemets :
+
+    | Au lieu de…           | …écrivez                |
+    |-----------------------|--------------------------|
+    | `$Fe^(2+)$`           | `$"Fe"^(2+)$`            |
+    | `$H_2O$`              | `$"H"_2"O"$`             |
+    | `$NaCl$`              | `$"NaCl"$`               |
+    | `$Fe + 2HCl -> ...$`  | `$"Fe" + 2"HCl" -> …$`   |
+
+    Les **variables d'une seule lettre** (`$x$`, `$n$`, `$V$`, `$pH$`)
+    n'ont pas besoin de guillemets.
 
 ??? failure "Le sommaire n'affiche qu'une partie"
     Vos chapitres doivent commencer par **un seul** `=`. Les `==` (sous-parties)
