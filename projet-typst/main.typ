@@ -6,7 +6,7 @@
 //  participant·es vont construire avec l'IA pendant l'atelier.
 // ============================================================
 
-#import "lib.typ": *
+#import "@preview/coquille-st-jacques:0.1.0": *
 
 // ─────────────────────────────────────────────────────────────
 //  PROMPT COVER (à coller dans Gemini / Nano Banana — format 3:4)

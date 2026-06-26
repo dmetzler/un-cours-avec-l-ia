@@ -3,7 +3,7 @@
 // Aide-mémoire 2 pages distribué dans le kit atelier.
 // Compilé en CI vers docs/kit/aide-memoire.pdf.
 
-#import "@preview/modele-cours-st-jacques:0.1.0": *
+#import "@preview/coquille-st-jacques:0.1.0": *
 
 #set document(title: "Aide-mémoire — Atelier")
 #set page(
@@ -39,7 +39,7 @@ Gardez cette page à portée de main pendant l'atelier.
 Tout fichier `main.typ` commence par :
 
 ```typ
-#import "@preview/modele-cours-st-jacques:0.1.0": *
+#import "@preview/coquille-st-jacques:0.1.0": *
 #show: course-template.with(
   title: "Mon cours",
   cover-title: [Mon titre \ sur deux lignes],
@@ -111,7 +111,7 @@ Puis on écrit le cours librement.
 
 #warn[
   - « *unknown variable: def* » → il manque
-    `#import "@preview/modele-cours-st-jacques:0.1.0": *` en haut.
+    `#import "@preview/coquille-st-jacques:0.1.0": *` en haut.
   - « *file not found* » → l'image n'est pas téléversée, ou le nom diffère
     (à la lettre près, majuscules comprises).
   - Un encart ne s'affiche pas → il faut `#def[...]` : un dièse `#`

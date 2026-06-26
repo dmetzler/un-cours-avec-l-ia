@@ -38,15 +38,17 @@ jobs:
       - name: Smoke test (import relatif depuis lib.typ)
         run: typst compile --root package package/tests/smoke.typ /tmp/smoke.pdf
 
-      - name: Installer le package en @local pour le projet exemple
+      - name: Installer le code local en @local (pour tester ce commit, pas la version publiée)
         run: |
           dest="$HOME/.local/share/typst/packages/local/${{ steps.pkg.outputs.name }}/${{ steps.pkg.outputs.version }}"
           mkdir -p "$dest"
           cp -r package/* "$dest/"
           ls -la "$dest"
 
-      - name: Bundler lib.typ dans projet-typst/ (forme transitoire)
-        run: cp package/lib.typ projet-typst/lib.typ
+      - name: Réécrire @preview -> @local pour tester le code local
+        run: |
+          sed -i 's|@preview/${{ steps.pkg.outputs.name }}:|@local/${{ steps.pkg.outputs.name }}:|' projet-typst/main.typ
+          grep -n "${{ steps.pkg.outputs.name }}" projet-typst/main.typ
 
       - name: Compiler le projet exemple
         run: |

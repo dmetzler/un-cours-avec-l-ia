@@ -8,30 +8,46 @@
 texte, il fabrique un beau PDF. Tout le style (couleurs, encarts, couverture) est
 déjà fait dans le modèle — vous n'avez qu'à **remplir**.
 
-## 1. Ouvrir le projet sur typst.app
+## 1. Démarrer un projet depuis Typst Universe
+
+C'est la méthode **la plus simple** : un clic, et vous avez un projet
+pré-rempli prêt à éditer.
 
 1. Allez sur **[typst.app](https://typst.app)** et créez un compte gratuit
    (connexion avec Google possible).
-2. Téléchargez le **[kit projet](kit/projet-typst.zip)**, décompressez-le
-   (la [source du `main.typ`](06-kit.md#source-exemple-ions) est également
-   consultable inline si vous voulez voir le code avant de télécharger).
-3. Sur typst.app : **+ Empty project**, puis glissez-déposez **tout le contenu**
-   du dossier (`main.typ`, `lib.typ`, le dossier `fonts`, et les images).
+2. Dans la barre latérale ou via **[typst.app/universe](https://typst.app/universe)**,
+   ouvrez **Typst Universe** et tapez **« coquille »** dans la recherche.
+3. Sélectionnez **[coquille-st-jacques](https://typst.app/universe/package/coquille-st-jacques)** —
+   la fiche du modèle s'ouvre, avec un aperçu de la page de couverture.
+4. Sur la fiche du package, cliquez sur le bouton qui crée un projet
+   (libellé proche de **« Create project in app »** ou **« Try in app »**
+   selon la version de l'interface) :
+   typst.app crée un nouveau projet pré-rempli avec un `main.typ`, une
+   couverture et un schéma d'exemple.
+5. Vous pouvez commencer à éditer immédiatement.
 
-!!! note "À propos de `lib.typ`"
-    `lib.typ` contient le **modèle** (encarts colorés, page de couverture,
-    sommaire…) — c'est ce qu'importe la première ligne de `main.typ` :
-    `#import "lib.typ": *`. Vous n'y touchez pas, vous l'embarquez tel quel.
+!!! tip "À quoi ressemble le projet de départ"
+    Le modèle vous donne un `main.typ` qui démontre les fonctionnalités
+    principales : couverture, encarts (`#def`, `#key`, `#warn`, `#ex`,
+    `#analogy`, `#keyhint`), schéma légendé, questions QCM. Vous
+    remplacez le contenu et les deux images, et vous avez votre cours.
 
-    *À terme*, le modèle sera publié comme package sur Typst Universe et
-    `main.typ` commencera par
-    `#import "@preview/modele-cours-st-jacques:0.1.0": *` — vous n'aurez plus
-    besoin de joindre `lib.typ`. Pour l'instant on l'embarque dans le kit,
-    rien à faire de votre côté.
+??? note "Méthode alternative : à partir du kit téléchargeable"
+    Si vous voulez démarrer **à partir de la séquence d'exemple** de
+    l'atelier (acides, bases et ions) plutôt que du modèle vierge, ou si
+    vous voulez l'avoir en local hors-ligne :
 
-!!! note "Pourquoi le dossier `fonts` ?"
-    Il garantit que votre PDF aura **exactement** le même rendu que l'exemple,
-    quel que soit l'ordinateur. Ne le supprimez pas.
+    1. Téléchargez le **[kit projet](kit/projet-typst.zip)**, décompressez-le.
+    2. Sur typst.app : **+ Empty project**, puis glissez-déposez tout le
+       contenu du dossier (`main.typ`, le dossier `fonts`, et les images).
+
+    Le `main.typ` du kit utilise `#import "@preview/coquille-st-jacques:0.1.0": *` —
+    typst.app télécharge le modèle automatiquement depuis Universe au
+    premier compile.
+
+!!! note "Pourquoi le dossier `fonts` (méthode kit) ?"
+    Il garantit que votre PDF aura **exactement** le même rendu que
+    l'exemple, quel que soit l'ordinateur. Ne le supprimez pas.
 
 ## 2. Coller votre trace écrite
 
@@ -69,12 +85,15 @@ Bouton de téléchargement en haut à droite → votre PDF est prêt. 🎉
 ## Quand ça coince : les 4 erreurs classiques
 
 ??? failure "« unknown variable: def »"
-    Il manque la première ligne `#import "lib.typ": *` en haut de `main.typ`.
+    Il manque la première ligne
+    `#import "@preview/coquille-st-jacques:0.1.0": *` en haut de `main.typ`.
 
-??? failure "« file not found: lib.typ »"
-    `lib.typ` n'a pas été téléversé avec les autres fichiers. Re-glissez le
-    contenu complet du kit (`main.typ` + `lib.typ` + dossier `fonts` + images)
-    dans le projet typst.app.
+??? failure "« package not found » au premier rendu"
+    Vérifiez la ligne d'import à l'identique :
+    `#import "@preview/coquille-st-jacques:0.1.0": *`. typst.app télécharge
+    le modèle automatiquement depuis Universe la première fois — il faut
+    juste une connexion internet (quasi-instantané ensuite, c'est mis en
+    cache).
 
 ??? failure "« file not found: … .png »"
     L'image n'est pas téléversée, ou son nom ne correspond pas **à la lettre près**

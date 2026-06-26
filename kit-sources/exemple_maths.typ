@@ -5,7 +5,7 @@
 //  les schémas vectoriels exacts avec CETZ.
 // ============================================================
 
-#import "@preview/modele-cours-st-jacques:0.1.0": *
+#import "@preview/coquille-st-jacques:0.1.0": *
 #import "@preview/cetz:0.4.2"
 
 #show: course-template.with(

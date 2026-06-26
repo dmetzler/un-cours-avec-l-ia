@@ -1,12 +1,17 @@
 [package]
-name = "modele-cours-st-jacques"
+name = "coquille-st-jacques"
 version = "0.1.0"
 entrypoint = "lib.typ"
 authors = ["Damien Metzler <dmetzler@gmail.com>"]
 license = "Apache-2.0"
-description = "Modèle de cours/séquence de révision illustré pour enseignant·es (encarts colorés, page de couverture, sommaire, QCM)."
+description = "Illustrated course handout for French school teachers."
 repository = "https://github.com/dmetzler/un-cours-avec-l-ia"
-keywords = ["cours", "fiche-de-revision", "callout", "education", "atelier"]
-categories = ["components", "report"]
+keywords = ["lesson", "revision", "callout", "education", "mcq"]
+categories = ["report"]
 disciplines = ["education"]
-exclude = []
+exclude = ["tests"]
+
+[template]
+path = "template"
+entrypoint = "main.typ"
+thumbnail = "thumbnail.png"

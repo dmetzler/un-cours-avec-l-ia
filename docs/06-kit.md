@@ -95,7 +95,7 @@ intéresse, sélectionnez-la, copiez-la, et collez-la dans votre projet
 Le code commence toujours par la ligne d'import :
 
 ```typ
-#import "@preview/modele-cours-st-jacques:0.1.0": *
+#import "@preview/coquille-st-jacques:0.1.0": *
 ```
 
 Le **modèle** est téléchargé automatiquement depuis Typst Universe au
@@ -127,10 +127,12 @@ le `.zip`.
 
 ### Source : projet Typst (kit complet) { #source-projet-typst }
 
-Le kit ZIP contient `main.typ` (la source ci-dessus), `lib.typ` (le
-modèle bundled — *forme transitoire* avant la publication du package
-sur Typst Universe), les **images de départ** et le dossier `fonts/`
-(polices DejaVu). C'est le format prêt à téléverser sur typst.app.
+Le kit ZIP contient `main.typ` (la source ci-dessus), les **images de
+départ** (couverture + schéma) et le dossier `fonts/` (polices DejaVu
+pour un rendu identique à l'exemple). C'est le format prêt à téléverser
+sur typst.app. Le modèle lui-même est téléchargé depuis Typst Universe
+au premier compile (`#import "@preview/coquille-st-jacques:0.1.0": *`),
+donc il n'est pas dans le zip.
 
 [:material-download: Télécharger projet-typst.zip](kit/projet-typst.zip){ .md-button }
 

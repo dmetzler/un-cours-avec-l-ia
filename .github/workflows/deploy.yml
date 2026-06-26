@@ -14,10 +14,6 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
-env:
-  PKG_NAME: modele-cours-st-jacques
-  PKG_VERSION: "0.1.0"
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,43 +30,15 @@ jobs:
         with:
           typst-version: latest
 
-      - name: Installer le package en @local
-        run: |
-          dest="$HOME/.local/share/typst/packages/local/$PKG_NAME/$PKG_VERSION"
-          mkdir -p "$dest"
-          cp -r package/typst.toml package/lib.typ package/README.md package/LICENSE "$dest/"
-
-      - name: Bundler lib.typ dans projet-typst/ (forme transitoire avant publication @preview)
-        run: |
-          cp package/lib.typ projet-typst/lib.typ
-          echo "✓ projet-typst/lib.typ (copie de package/lib.typ)"
-
       - name: Compiler les sources du kit (kit-sources/*.typ -> docs/kit/*.pdf)
         run: |
           mkdir -p docs/kit
           shopt -s nullglob
           for src in kit-sources/*.typ; do
             base=$(basename "$src" .typ)
-            build="kit-sources/.build-$base.typ"
-            # Réécrit UNIQUEMENT l'import file-level (le premier #import qui
-            # commence en début de ligne) — les `#import @preview/...` à
-            # l'intérieur des blocs de code restent intacts pour que les
-            # PDFs montrent la forme cible @preview que les profs vont copier.
-            # Une fois le package mergé sur Typst Universe, cette étape peut
-            # être supprimée et le typst compile peut tourner directement sur
-            # le source.
-            awk -v pkg="$PKG_NAME" '
-              BEGIN { done = 0 }
-              done == 0 && $0 ~ ("^#import \"@preview/" pkg ":") {
-                sub("@preview/" pkg ":", "@local/" pkg ":")
-                done = 1
-              }
-              { print }
-            ' "$src" > "$build"
             typst compile \
               --font-path projet-typst/fonts \
-              "$build" "docs/kit/$base.pdf"
-            rm -f "$build"
+              "$src" "docs/kit/$base.pdf"
             echo "✓ docs/kit/$base.pdf ($(du -h "docs/kit/$base.pdf" | cut -f1))"
           done
 

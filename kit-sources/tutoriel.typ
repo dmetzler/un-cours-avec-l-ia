@@ -3,7 +3,7 @@
 //  Destinataire : enseignant·e de SVT collège, débutant en Typst
 // ============================================================
 
-#import "@preview/modele-cours-st-jacques:0.1.0": *
+#import "@preview/coquille-st-jacques:0.1.0": *
 
 #show: course-template.with(
   title: "Tutoriel — Template de cours illustré",
@@ -110,7 +110,7 @@ Tous vos cours auront la même ossature. Le fichier `main.typ` commence
 toujours par les *trois lignes magiques* suivantes :
 
 ```typ
-#import "@preview/modele-cours-st-jacques:0.1.0": *
+#import "@preview/coquille-st-jacques:0.1.0": *
 
 #show: course-template.with(
   title: "Mon cours",
@@ -653,14 +653,14 @@ comment les régler.
 
 == Erreur 1 : "unknown variable: def"
 
-*Cause probable :* vous avez oublié la ligne `#import "@preview/modele-cours-st-jacques:0.1.0": *`
+*Cause probable :* vous avez oublié la ligne `#import "@preview/coquille-st-jacques:0.1.0": *`
 en haut du fichier.
 
 *Solution :* assurez-vous que les *deux premières lignes utiles* de
 `main.typ` sont :
 
 ```typ
-#import "@preview/modele-cours-st-jacques:0.1.0": *
+#import "@preview/coquille-st-jacques:0.1.0": *
 #show: course-template.with(...)
 ```
 
@@ -749,13 +749,13 @@ l'import. Ensuite vous pouvez l'utiliser comme les autres :
 == Modifier le template
 
 Le modèle est désormais publié comme package
-`@preview/modele-cours-st-jacques` — vous ne pouvez donc plus l'éditer
+`@preview/coquille-st-jacques` — vous ne pouvez donc plus l'éditer
 "sur place". Deux options si vous voulez changer les couleurs par
 défaut, la police ou les marges :
 
 + *Version locale* — récupérez la source du modèle sur
   #link("https://github.com/dmetzler/un-cours-avec-l-ia")[le dépôt GitHub],
-  installez-la en `@local/modele-cours-st-jacques/0.1.0` (voir la doc
+  installez-la en `@local/coquille-st-jacques/0.1.0` (voir la doc
   Typst sur les packages locaux), puis importez-la avec `@local/...`
   au lieu de `@preview/...`.
 + *Surcharger en haut de votre `main.typ`* — la plupart du temps, vous
@@ -791,7 +791,7 @@ Imprimez cette page et gardez-la à portée de main.
 == Structure de base
 
 ```typ
-#import "@preview/modele-cours-st-jacques:0.1.0": *
+#import "@preview/coquille-st-jacques:0.1.0": *
 #show: course-template.with(
   title: "...",
   cover-title: [...],

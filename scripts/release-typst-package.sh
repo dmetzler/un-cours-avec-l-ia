@@ -88,7 +88,16 @@ cd "$WORK_DIR"
 
 if [[ ! -d packages/.git ]]; then
   say "Clonage de typst/packages dans $WORK_DIR/packages"
-  git clone --depth=1 "$UPSTREAM" packages
+  git clone --depth=1 --no-checkout --filter="tree:0" "$UPSTREAM"  packages
+
+  cd packages
+  git sparse-checkout init
+  git sparse-checkout set packages/preview/$NAME
+  git remote add upstream git@github.com:typst/packages
+  git config remote.upstream.partialclonefilter tree:0
+  git checkout main
+  cd ..
+
 else
   say "Mise à jour du clone existant"
   cd packages
